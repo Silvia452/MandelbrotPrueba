@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -25,20 +27,24 @@ public class Mandelbrot {
 
         JPanel controlPanel = new JPanel();
         spinner = new JSpinner(new SpinnerNumberModel(1, 1, 100, 1));
-        spinner.addChangeListener(e -> {
-            numWorkers = (int) spinner.getValue();
-            calcularConjuntoMandelbrot();
-            pintaMandelbrot();
-        });
         controlPanel.add(new JLabel("Número de Trabajadores:"));
         controlPanel.add(spinner);
+
+        JButton startButton = new JButton("Start");
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                numWorkers = (int) spinner.getValue();
+                calcularConjuntoMandelbrot();
+                pintaMandelbrot();
+            }
+        });
+        controlPanel.add(startButton);
+
         frame.add(controlPanel, BorderLayout.SOUTH);
 
         frame.setSize(800, 600);
         frame.setVisible(true);
-
-        calcularConjuntoMandelbrot();
-        pintaMandelbrot();
     }
 
     private static void calcularConjuntoMandelbrot() {
@@ -110,4 +116,3 @@ public class Mandelbrot {
         }
     }
 }
-

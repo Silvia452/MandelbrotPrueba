@@ -30,6 +30,7 @@ public class Mandelbrot {
         controlPanel.add(new JLabel("Número de Trabajadores:"));
         controlPanel.add(spinner);
 
+
         JButton startButton = new JButton("Start");
         startButton.addActionListener(new ActionListener() {
             @Override
@@ -40,7 +41,6 @@ public class Mandelbrot {
             }
         });
         controlPanel.add(startButton);
-
         frame.add(controlPanel, BorderLayout.SOUTH);
 
         frame.setSize(800, 600);
